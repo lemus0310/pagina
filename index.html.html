@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Enfermera preciosa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e2d1f9, #f8f4ff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #5a4a6a;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(149, 117, 205, 0.2);
+            max-width: 800px;
+            margin: 1rem;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #7e5b9e;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .heart {
+            color: #d4a5ed;
+            font-size: 2rem;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            margin: 0 5px;
+        }
+
+        .heart-animated {
+            color: #d4a5ed;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            position: absolute;
+            z-index: 50;
+        }
+
+        .nurse-icon {
+            font-size: 4rem;
+            margin: 1rem 0;
+            color: #9b72cb;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .flowers {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        .signature {
+            font-style: italic;
+            margin-top: 2rem;
+            color: #7e5b9e;
+            font-weight: 600;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .love-message {
+            display: none;
+            font-size: 1.3rem;
+            color: #9b72cb;
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 80%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            z-index: 100;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fall {
+            to {
+                top: 100%;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        .purple-btn {
+            background: linear-gradient(45deg, #9b72cb, #c6a2e8);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(155, 114, 203, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .purple-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(155, 114, 203, 0.6);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #d4a5ed;
+            opacity: 0.7;
+            animation: confettiFall 5s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .love-message {
+                font-size: 1.1rem;
+                padding: 10px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nurse-icon">👩‍⚕️</div>
+        <h1>Feliz Día de la Enfermera, mi amor<span class="heart">❤️</span></h1>
+        <p>Es increíble en su trabajo y aún más en mi vida. La admiro mucho</p>
+        
+        <button class="purple-btn" id="celebrateBtn">¡Haz clic para una sorpresa!</button>
+        <div id="loveMessage" class="love-message"></div>
+        <p class="signature">Con todo mi amor, para la mejor enfermera del mundo</p>
+    </div>
+
+    <script>
+        // Mensajes románticos (versión final)
+        const romanticMessages = [
+            "El paciente más afortunado soy yo, por tenerla",
+            "Usted es hermosa por fuera y espectacular por dentro",
+            "Admiro su fuerza y dedicación cada día",
+            "Su profesionalismo solo iguala a su gran corazón",
+            "No hay día que no me sienta orgullosa de usted. Su labor es admirable y su corazón, aún más.",
+            "¿Cómo hace usted para ser tanto? Enfermera, mujer, y la persona que más amo.",
+            "Gracias por todo lo que da. Gracias por dejarme quererla."
+
+            
+        ];
+
+        // Crear flores que caen
+        function createFlowers() {
+            const flowers = ['🌸', '💮', '🏵️', '🌺', '🌻', '🌼', '🌷'];
+            const container = document.body;
+            
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flowers';
+                flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.top = -50 + 'px';
+                flower.style.animationDuration = 5 + Math.random() * 10 + 's';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(flower);
+            }
+        }
+
+        // Crear confeti
+        function createConfetti() {
+            const colors = ['#d4a5ed', '#9b72cb', '#c6a2e8', '#e2d1f9', '#f0e6ff'];
+            const container = document.body;
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.width = 5 + Math.random() * 10 + 'px';
+                confetti.style.height = 5 + Math.random() * 10 + 'px';
+                confetti.style.animationDuration = 3 + Math.random() * 7 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(confetti);
+            }
+        }
+
+        // Botón de celebración - VERSIÓN MEJORADA
+        document.getElementById('celebrateBtn').addEventListener('click', function() {
+            createConfetti();
+            this.textContent = '¡La amo!';
+            this.style.background = 'linear-gradient(45deg, #c6a2e8, #e2d1f9)';
+            
+            // Mostrar mensaje romántico aleatorio con mejor visibilidad
+            const loveMessage = document.getElementById('loveMessage');
+            loveMessage.style.display = 'block';
+            loveMessage.textContent = romanticMessages[Math.floor(Math.random() * romanticMessages.length)];
+            
+            // REDUCCIÓN DE CORAZONES y mejor posicionamiento
+            const hearts = ['❤️', '💜'];
+            const container = document.querySelector('.container');
+            
+            // Limpiar corazones anteriores
+            const existingHearts = document.querySelectorAll('.heart-animated');
+            existingHearts.forEach(heart => heart.remove());
+            
+            // Agregar menos corazones (solo 5) y mejor distribuidos
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'heart heart-animated';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'absolute';
+                heart.style.left = (20 + Math.random() * 60) + '%';
+                heart.style.top = (30 + Math.random() * 40) + '%';
+                heart.style.animationDuration = (1 + Math.random() * 2) + 's';
+                heart.style.fontSize = (1.5 + Math.random() * 1) + 'rem';
+                container.appendChild(heart);
+            }
+        });
+
+        // Inicializar flores al cargar la página
+        window.onload = createFlowers;
+    </script>
+</body>
+</html>
